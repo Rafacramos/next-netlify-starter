@@ -1,77 +1,99 @@
 import Head from 'next/head';
-import '../styles/Home.module.css';
+import { useState } from 'react';
+import usePriceCalculator from '../hooks/usePriceCalculator';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  const { estimatedPrice, calculatePrice } = usePriceCalculator();
+  const [doors, setDoors] = useState(0);
+  const [drawers, setDrawers] = useState(0);
+  const [sidePanels, setSidePanels] = useState(0);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    calculatePrice(doors, drawers, sidePanels);
+  };
+
   return (
     <>
       <Head>
         <title>Light It Up Painting - Cabinet Painting Quote</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light It Up Painting - Cabinet Painting Quote</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <header>
-        <h1>Light It Up Painting - Cabinet Painting Quote</h1>
+      <header>
+        <h1>Light It Up Painting</h1>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+          <a href="#quote">Get a Quote</a>
+          <a href="#process">Our Process</a>
         </nav>
-    </header>
-
-    <main>
-        <section class="intro">
-            <h2>Get an Instant Cabinet Painting Estimate</h2>
-            <p>At Light It Up Painting, we offer professional cabinet painting services in San Diego, CA. Use our simple online calculator to get an instant estimate for your kitchen cabinet painting project.</p>
+      </header>
+      <main>
+        <section className={styles.intro}>
+          <h2>Instant Cabinet Painting Estimate</h2>
+          <p>
+            Get an instant estimate for cabinet painting using our simple online
+            calculator. Just enter the number of doors, drawers, and side panels
+            to get your quote.
+          </p>
         </section>
-
-        <section class="calculator">
-            <h2>Price Calculator</h2>
-            <form id="calculator-form">
-                <div class="form-group">
-                    <label for="doors">Number of Doors:</label>
-                    <input type="number" id="doors" name="doors" min="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="drawers">Number of Drawers:</label>
-                    <input type="number" id="drawers" name="drawers" min="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="side-panels">Number of Side Panels:</label>
-                    <input type="number" id="side-panels" name="side-panels" min="0" value="0">
-                </div>
-                <button type="submit">Calculate</button>
-            </form>
-            <div class="result">
-                <h3>Estimated Price: <span id="estimated-price">$0</span></h3>
+        <section id="quote" className={styles.calculator}>
+          <h2>Price Calculator</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label htmlFor="doors">Doors:</label>
+              <input
+                type="number"
+                id="doors"
+                name="doors"
+                value={doors}
+                onChange={(e) => setDoors(e.target.value)}
+              />
             </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="drawers">Drawers:</label>
+              <input
+                type="number"
+                id="drawers"
+                name="drawers"
+                value={drawers}
+                onChange={(e) => setDrawers(e.target.value)}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="side-panels">Side Panels:</label>
+              <input
+                type="number"
+                id="side-panels"
+                name="side-panels"
+                value={sidePanels}
+                onChange={(e) => setSidePanels(e.target.value)}
+              />
+            </div>
+            <button type="submit">Calculate</button>
+          </form>
+          <div className={styles.result}>
+            Estimated Price: <strong>${estimatedPrice}</strong>
+          </div>
         </section>
-
-        <section class="process">
-            <h2>Our Cabinet Painting Process</h2>
-            <ol>
-                <li>Initial consultation to assess your needs and preferences</li>
-                <li>Preparation of the workspace, including covering and protecting adjacent surfaces</li>
-                <li>Removal of cabinet doors, drawers, and hardware</li>
-                <li>Cleaning and sanding of surfaces to ensure proper paint adhesion</li>
-                <li>Application of primer to provide a solid base for the paint</li>
-                <li>Application of high-quality paint in the color of your choice</li>
-                <li>Reinstallation of cabinet doors, drawers, and hardware</li>
-                <li>Cleanup and final inspection to ensure your satisfaction</li>
-            </ol>
+        <section id="process" className={styles.process}>
+          <h2>Our Cabinet Painting Process</h2>
+          <p>
+            At Light It Up Painting, we follow a detailed process to ensure the
+            best results for your cabinet painting project. Here are the steps
+            we take:
+          </p>
+          <ol>
+            <li>Remove doors, drawers, and hardware.</li>
+            <li>Clean and sand surfaces.</li>
+            <li>Apply primer.</li>
+            <li>Apply the first coat of paint.</li>
+            <li>Sand surfaces again.</li>
+            <li>Apply the final coat of paint.</li>
+            <li>Reinstall doors, drawers, and hardware.</li>
+          </ol>
         </section>
-    </main>
-
-    <footer>
+      </main>
+      <footer>
         <p>&copy; 2023 Light It Up Painting. All rights reserved. | San Diego, CA</p>
     </footer>
 </body>
