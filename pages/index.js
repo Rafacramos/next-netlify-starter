@@ -23,8 +23,8 @@ export default function Home() {
       <header>
         <h1>Light It Up Painting</h1>
         <nav>
-          <a href="#quote">Get a Quote</a>
-          <a href="#process">Our Process</a>
+          <a href="https://lightituppainting.com">Get a Quote</a>
+          <a href="https://lightituppainting.com/cabinets">Our Process</a>
         </nav>
       </header>
       <main>
