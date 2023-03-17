@@ -87,19 +87,3 @@ footer {
     margin-top: 2rem;
 }
 
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 768px) {
-    nav {
-        float: none;
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    nav a {
-        display: inline-block;
-    }
-
-    main {
-        padding: 1rem;
-    }
-}
