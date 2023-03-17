@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import usePriceCalculator from '../hooks/usePriceCalculator';
+import usePriceCalculator from '../usePriceCalculator';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
